@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks'
 
-const FLAG_COLS = 26
+const FLAG_COLS = 24
 const FLAG_ROWS = 10
 const MAX_AMP = 2
 const RENDER_ROWS = FLAG_ROWS + MAX_AMP
