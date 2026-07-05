@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks'
 
-const FLAG_COLS = 20
-const FLAG_ROWS = 5
+const FLAG_COLS = 26
+const FLAG_ROWS = 10
 const MAX_AMP = 2
 const RENDER_ROWS = FLAG_ROWS + MAX_AMP
 const FREQ = 0.6
@@ -33,7 +33,7 @@ export function TransFlag({ theme }: Props) {
       const disp = amp * Math.sin(FREQ * c - SPEED * time)
       const stripeR = r - disp
       if (stripeR >= 0 && stripeR < FLAG_ROWS) {
-        const stripeIdx = Math.max(0, Math.min(4, Math.floor(stripeR)))
+        const stripeIdx = Math.max(0, Math.min(4, Math.floor(stripeR / 2)))
         cells.push(stripes[stripeIdx])
       } else {
         cells.push(null)
@@ -46,7 +46,7 @@ export function TransFlag({ theme }: Props) {
     <div className="font-mono select-none" style={{ lineHeight: '1em' }}>
       {rows.map((row, r) => (
         <div key={r} style={{ display: 'flex' }}>
-          <span style={{ color: '#555' }}>│</span>
+          <span style={{ color: '#555' }}>||</span>
           {row.map((color, c) => (
             <span key={c} style={{ color: color ?? 'transparent' }}>█</span>
           ))}

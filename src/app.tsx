@@ -103,10 +103,10 @@ export function App() {
         <div className="p-4 sm:p-6 md:p-8 space-y-8 font-mono text-sm leading-relaxed overflow-x-auto">
           
           {/* ASCII Banner & Neofetch Panel */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
             
             {/* Animated Trans Flag */}
-            <div className="md:col-span-6 py-2 flex justify-center md:justify-start">
+            <div className="md:col-span-6 py-2 flex justify-center md:justify-center">
               <TransFlag theme={theme} />
             </div>
 
