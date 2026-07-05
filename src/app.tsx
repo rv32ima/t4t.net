@@ -145,7 +145,14 @@ export function App() {
             </div>
             <div className={`border ${currentTheme.border} ${currentTheme.accentBg} py-2 px-4 rounded text-xs sm:text-sm text-slate-300 space-y-2`}>
               <p>
-                <span className={`${currentTheme.text} font-semibold`}>t4t.net</span> operates as an experimental autonomous system (AS395388) designed to facilitate network research & BGP routing experiments, for trans people, by trans people.
+                <a href="https://t4t.net" className={`${currentTheme.text} font-semibold`}>t4t.net</a> operates as an experimental autonomous system designed to facilitate network research & BGP routing experiments, for trans people, by trans people.
+              </p>
+              <p>
+                We offer compute & networking services on a best-effort basis via our presence in KOMO Plaza in Seattle. 
+                No guarantees are ever made on the reliability of our services (and no, I will never sign an SLA). This is a side-project, and not a full-time job.
+              </p>
+              <p>
+                Our whole fleet runs <a href="https://nixos.org/" className={`${currentTheme.text} hover:underline`}>NixOS</a> (including our Mellanox network switch!), and we do not plan on supporting other operating systems. Sorry.
               </p>
             </div>
           </div>
@@ -199,7 +206,7 @@ export function App() {
                 <tbody className="divide-y divide-white/5">
                   <tr>
                     <td className="py-2 text-white font-semibold">Cofractal</td>
-                    <td className="py-2 text-slate-300 hover:underline"><a href="https://bgp.tools/as/26073">AS26073</a></td>
+                    <td className="py-2 text-slate-300 hover:underline"><a href="https://bgp.tools/as/26073" className={`${currentTheme.text} hover:underline`}>AS26073</a></td>
                     <td className="py-2 text-slate-400 hidden sm:table-cell">Transit (IPv4 + IPv6)</td>
                   </tr>
                 </tbody>
