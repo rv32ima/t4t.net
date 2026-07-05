@@ -77,7 +77,7 @@ export function App() {
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
             
             {/* Animated Trans Flag */}
-            <div className="md:col-span-6 py-2">
+            <div className="md:col-span-6 py-2 flex justify-center md:justify-start">
               <TransFlag theme={theme} />
             </div>
 
@@ -98,7 +98,7 @@ export function App() {
                 <span className="col-span-2 text-white font-medium">AS395388</span>
 
                 <span className={`${currentTheme.textDim}`}>OS:</span>
-                <span className="col-span-2 text-white">FRR 10.4.1 (NixOS 25.11)</span>
+                <span className="col-span-2 text-white">NixOS 26.05</span>
 
                 <span className={`${currentTheme.textDim}`}>Location:</span>
                 <span className="col-span-2 text-white">Seattle, WA (KOMO Plaza)</span>
@@ -133,19 +133,19 @@ export function App() {
                   <tr className={`border-b ${currentTheme.border} opacity-80 pb-2`}>
                     <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Prefix</th>
                     <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Type</th>
-                    <th className={`pb-2 ${currentTheme.textDim} font-medium`}>RIR</th>
+                    <th className={`pb-2 ${currentTheme.textDim} font-medium hidden sm:table-cell`}>RIR</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   <tr>
                     <td className="py-2 text-white font-semibold">23.190.72.0/24</td>
                     <td className="py-2 text-slate-400">IPv4</td>
-                    <td className="py-2 text-slate-400">ARIN</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">ARIN</td>
                   </tr>
                   <tr>
                     <td className="py-2 text-white font-semibold">2620:c2:2000::/48</td>
                     <td className="py-2 text-slate-400">IPv6</td>
-                    <td className="py-2 text-slate-400">ARIN</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">ARIN</td>
                   </tr>
                 </tbody>
               </table>
@@ -162,16 +162,16 @@ export function App() {
               <table className="w-full text-left text-xs sm:text-sm">
                 <thead>
                   <tr className={`border-b ${currentTheme.border} opacity-80 pb-2`}>
-                    <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Peer / Description</th>
+                    <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Peer</th>
                     <th className={`pb-2 ${currentTheme.textDim} font-medium`}>ASN</th>
-                    <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Type</th>
+                    <th className={`pb-2 ${currentTheme.textDim} font-medium hidden sm:table-cell`}>Type</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   <tr>
                     <td className="py-2 text-white font-semibold">Cofractal</td>
                     <td className="py-2 text-slate-300 hover:underline"><a href="https://bgp.tools/as/26073">AS26073</a></td>
-                    <td className="py-2 text-slate-400">Transit (IPv4 + IPv6)</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">Transit (IPv4 + IPv6)</td>
                   </tr>
                 </tbody>
               </table>
@@ -189,29 +189,29 @@ export function App() {
                 <thead>
                   <tr className={`border-b ${currentTheme.border} opacity-80 pb-2`}>
                     <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Service</th>
-                    <th className={`pb-2 ${currentTheme.textDim} font-medium`}>Description</th>
+                    <th className={`pb-2 ${currentTheme.textDim} font-medium hidden sm:table-cell`}>Description</th>
                     <th className={`pb-2 ${currentTheme.textDim} font-medium`}>URL</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-white/5">
                   <tr>
                     <td className="py-2 text-white font-semibold">Looking Glass</td>
-                    <td className="py-2 text-slate-400">BGP routing information</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">BGP routing information</td>
                     <td className="py-2"><a href="https://lg.t4t.net" className={`${currentTheme.text} hover:underline`}>lg.t4t.net</a></td>
                   </tr>
                   <tr>
                     <td className="py-2 text-white font-semibold">Status Page</td>
-                    <td className="py-2 text-slate-400">Everything at a glance</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">Everything at a glance</td>
                     <td className="py-2"><a href="https://status.t4t.net" className={`${currentTheme.text} hover:underline`}>status.t4t.net</a></td>
                   </tr>
                   <tr>
                     <td className="py-2 text-white font-semibold">Certificate Authority</td>
-                    <td className="py-2 text-slate-400">Internal PKI & TLS certificates</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">Internal PKI & TLS certificates</td>
                     <td className="py-2"><a href="https://ca.t4t.net" className={`${currentTheme.text} hover:underline`}>ca.t4t.net</a></td>
                   </tr>
                   <tr>
                     <td className="py-2 text-white font-semibold">OpenBao</td>
-                    <td className="py-2 text-slate-400">Secret management</td>
+                    <td className="py-2 text-slate-400 hidden sm:table-cell">Secret management</td>
                     <td className="py-2"><a href="https://bao.t4t.net:8200" className={`${currentTheme.text} hover:underline`}>bao.t4t.net</a></td>
                   </tr>
                 </tbody>
