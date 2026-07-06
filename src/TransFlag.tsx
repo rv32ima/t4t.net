@@ -1,11 +1,27 @@
 import { useEffect, useState } from 'preact/hooks'
 
-const FLAG_COLS = 24
+const MAX_FLAG_COLS = 24
 const FLAG_ROWS = 10
 const MAX_AMP = 2
 const RENDER_ROWS = FLAG_ROWS + MAX_AMP
 const FREQ = 0.6
 const SPEED = 2.5
+
+function useResponsiveCols() {
+  const [cols, setCols] = useState(() => {
+    const w = window.innerWidth
+    return w < 480 ? 14 : w < 768 ? 18 : MAX_FLAG_COLS
+  })
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      setCols(w < 480 ? 14 : w < 768 ? 18 : MAX_FLAG_COLS)
+    }
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
+  return cols
+}
 
 export const FLAG_COLORS: Record<string, string[]> = {
   trans:    ['#5BCEFA', '#F5A9B8', '#FFFFFF', '#F5A9B8', '#5BCEFA'],
@@ -18,6 +34,7 @@ type Props = { theme: string }
 
 export function TransFlag({ theme }: Props) {
   const [time, setTime] = useState(0)
+  const cols = useResponsiveCols()
   const stripes = FLAG_COLORS[theme] ?? FLAG_COLORS.trans
 
   useEffect(() => {
@@ -28,8 +45,8 @@ export function TransFlag({ theme }: Props) {
   const rows: (string | null)[][] = []
   for (let r = 0; r < RENDER_ROWS; r++) {
     const cells: (string | null)[] = []
-    for (let c = 0; c < FLAG_COLS; c++) {
-      const amp = MAX_AMP * (c / (FLAG_COLS - 1))
+    for (let c = 0; c < cols; c++) {
+      const amp = MAX_AMP * (c / (cols - 1))
       const disp = amp * Math.sin(FREQ * c - SPEED * time)
       const stripeR = r - disp
       if (stripeR >= 0 && stripeR < FLAG_ROWS) {

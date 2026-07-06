@@ -7,16 +7,16 @@ import { fileURLToPath } from 'url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 const W = 1000, H = 1000
-const FLAG_COLS = 20, FLAG_ROWS = 5, MAX_AMP = 2, FREQ = 0.6, SPEED = 2.5
+const FLAG_COLS = 15, FLAG_ROWS = 5, MAX_AMP = 2, FREQ = 0.6, SPEED = 2.5
 const RENDER_ROWS = FLAG_ROWS + MAX_AMP  // 7
 const t = 0
 
 const stripes = ['#5BCEFA', '#F5A9B8', '#FFFFFF', '#F5A9B8', '#5BCEFA']
 
-// width is the constraint: 21 cols (pole + 20 flag) must fit in W
-const CELL_W = Math.floor(W / (FLAG_COLS + 1))           // 47
-const CELL_H = Math.round(CELL_W / 0.6)                  // 78 — monospace ratio
-const OX = Math.round((W - (FLAG_COLS + 1) * CELL_W) / 2)
+// flag body = 75% of image width so cells aren't enormous, centered at image center
+const CELL_W = Math.floor(W * 0.75 / FLAG_COLS)          // 50
+const CELL_H = Math.round(CELL_W / 0.6)                  // 83 — monospace ratio
+const OX = Math.round(W / 2 - CELL_W * (1 + FLAG_COLS / 2))
 const FLAG_CENTER_X = OX + CELL_W + Math.round((FLAG_COLS * CELL_W) / 2)
 
 const POLE_W = 16

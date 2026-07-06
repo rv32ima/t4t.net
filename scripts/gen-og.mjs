@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url'
 const root = join(dirname(fileURLToPath(import.meta.url)), '..')
 
 const W = 1200, H = 630
-const FLAG_COLS = 20, FLAG_ROWS = 5, MAX_AMP = 2, FREQ = 0.6, SPEED = 2.5
+const FLAG_COLS = 15, FLAG_ROWS = 5, MAX_AMP = 2, FREQ = 0.6, SPEED = 2.5
 const RENDER_ROWS = FLAG_ROWS + MAX_AMP  // 7
 const t = 0
 
@@ -16,7 +16,7 @@ const stripes = ['#5BCEFA', '#F5A9B8', '#FFFFFF', '#F5A9B8', '#5BCEFA']
 const FLAG_Y = 140
 const CELL_H = Math.floor((H - FLAG_Y) / RENDER_ROWS)  // 70
 const CELL_W = Math.round(CELL_H * 0.6)                 // 42 — monospace ratio
-const OX = Math.round((W - (FLAG_COLS + 1) * CELL_W) / 2)
+const OX = Math.round(W / 2 - CELL_W * (1 + FLAG_COLS / 2))
 const FLAG_CENTER_X = OX + CELL_W + Math.round((FLAG_COLS * CELL_W) / 2)
 
 const POLE_W = 14
