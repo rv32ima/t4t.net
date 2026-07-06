@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'preact/hooks'
+import { useEffect, useRef, useState } from 'preact/hooks'
 
 const MAX_FLAG_COLS = 24
 const FLAG_ROWS = 10
@@ -7,20 +7,25 @@ const RENDER_ROWS = FLAG_ROWS + MAX_AMP
 const FREQ = 0.6
 const SPEED = 2.5
 
+function colsFromWidth(w: number) {
+  return Math.max(10, Math.min(MAX_FLAG_COLS, Math.round(w / 18)))
+}
+
 function useResponsiveCols() {
-  const [cols, setCols] = useState(() => {
-    const w = window.innerWidth
-    return w < 480 ? 14 : w < 768 ? 18 : MAX_FLAG_COLS
-  })
+  const ref = useRef<HTMLDivElement>(null)
+  const [cols, setCols] = useState(MAX_FLAG_COLS)
+
   useEffect(() => {
-    const update = () => {
-      const w = window.innerWidth
-      setCols(w < 480 ? 14 : w < 768 ? 18 : MAX_FLAG_COLS)
-    }
-    window.addEventListener('resize', update)
-    return () => window.removeEventListener('resize', update)
+    const parent = ref.current?.parentElement
+    if (!parent) return
+    const update = (w: number) => setCols(colsFromWidth(w))
+    update(parent.getBoundingClientRect().width)
+    const obs = new ResizeObserver(entries => update(entries[0].contentRect.width))
+    obs.observe(parent)
+    return () => obs.disconnect()
   }, [])
-  return cols
+
+  return { cols, ref }
 }
 
 export const FLAG_COLORS: Record<string, string[]> = {
@@ -34,7 +39,7 @@ type Props = { theme: string }
 
 export function TransFlag({ theme }: Props) {
   const [time, setTime] = useState(0)
-  const cols = useResponsiveCols()
+  const { cols, ref } = useResponsiveCols()
   const stripes = FLAG_COLORS[theme] ?? FLAG_COLORS.trans
 
   useEffect(() => {
@@ -60,7 +65,7 @@ export function TransFlag({ theme }: Props) {
   }
 
   return (
-    <div className="font-mono select-none" style={{ lineHeight: '1em' }}>
+    <div ref={ref} className="font-mono select-none" style={{ lineHeight: '1em' }}>
       {rows.map((row, r) => (
         <div key={r} style={{ display: 'flex' }}>
           <span style={{ color: '#555' }}>||</span>
